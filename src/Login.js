@@ -35,8 +35,9 @@ const Login = () => {
     {
         setRole(value);
     }
-    const handleLogin = () => {
-        // e.preventdefault();
+    const handleLogin = (e) => {
+        //used to prevent reload of page on submit
+        e.preventDefault();
 
         const data = {
             UserName:username,
@@ -47,30 +48,25 @@ const Login = () => {
         const url = "https://localhost:44313/api/test/Login";
         axios.post(url, data).then((result) => {
             alert(result.data);
-            // navigate("/Admin");
-            // e.preventdefault();
-            // if (result.data === "Login Successful")
-            // {
-            //     alert(result.data);
-            //     navigate("/Admin");
-            // } else {
-            //     alert(result.data);
-            //     navigate("/");
-            //     }
+            if (result.data === "Login Successful")
+            {
+                alert(result.data);
+                if (role ==="Admin") {
+                    navigate("/Admin");
+                }
+                else if(role === "User")
+                {
+                    navigate("/User");
+                }
+            } else {
+                alert(result.data);
+                navigate("/");
+            }
         }).catch((error) => {
             alert(error);
-            // navigate("/Admin");
+            navigate("/");
         })
-        
-        // e.preventdefault();
-        if (role ==="Admin") {
-            navigate("/Admin");
-        }
-        if(role==="User")
-        {
-            navigate("/User");
-        }
-
+    
     }
 
 
@@ -81,20 +77,21 @@ const Login = () => {
                <div id="card-title"><h2>LOGIN</h2>
                    <div class="underline-title"></div>
                </div>
-                  <form class="form" >
-                  <label  style={{paddingTop:'13px'}}>&nbsp;Select Role</label>
-                      <select class="form-content" required onChange={e => setSelectedFruit(e.target.value)}>
+                  <form class="form" onSubmit={handleLogin}>
+                  <label  class="form_row">&nbsp;Select Role</label>
+                      <select class="form-content" required onChange={(e) => setSelectedFruit(e.target.value)}>
+                          <option>None</option>
                           <option>Admin</option>
                           <option>User</option>
                       </select>
                <div class="form-border"></div>
-               <label style={{paddingTop:'13px'}}>&nbsp;Username</label>
+               <label class="form_row">&nbsp;Username</label>
                <input id="user-email" class="form-content"  required onChange={(e)=>handleNameChange(e.target.value)}/>
                <div class="form-border"></div>
-               <label style={{paddingTop:'22px'}}>&nbsp;Password</label>
-               <input id="user-password" class="form-content"  required onChange={(e)=>handlePasswordChange(e.target.value)}/>
+               <label class="form_row">&nbsp;Password</label>
+               <input id="user-password" class="form-content" type="password" required onChange={(e)=>handlePasswordChange(e.target.value)}/>
                <div class="form-border"></div>
-                      <button id="submit-btn"  onClick={handleLogin}>Submit</button> 
+                      <button id="submit-btn">Submit</button> 
                       {/* <input id="submit-btn" type="submit" name="submit" value="LOGIN" /> */}
       </form>
               </div>

@@ -29,10 +29,9 @@ a {
     padding: 20px 50px;
   }
   #card-title {
-    font-family: "Raleway Thin", sans-serif;
-    letter-spacing: 10px;
-    padding-bottom: 23px;
-    padding-top: 13px;
+    color: #3c009d;
+    font-size: 3rem;
+    font-weight: 700; 
     text-align: center;
   }
   #signup {
@@ -43,44 +42,63 @@ a {
     text-align: center;
   }
   #submit-btn {
-    background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
-    border: none;
-    border-radius: 21px;
-    box-shadow: 0px 1px 8px #24c64f;
-    cursor: pointer;
-    color: white;
-    font-family: "Raleway SemiBold", sans-serif;
-    height: 60px;
+    background-image : linear-gradient(to right, #4568DC 0%, #B06AB3  51%, #4568DC  100%);
+    margin: 0 auto;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
     margin: 0 auto;
     margin-top: 50px;
-    transition: 0.25s;
-    width: 170px;
   }
+           
   #submit-btn:hover {
-    box-shadow: 0px 1px 18px #24c64f;
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
   }
   .form {
+    color: rgb(57, 55, 68);
     align-items: left;
     display: flex;
     flex-direction: column;
   }
   .form-border {
-    background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+    background: linear-gradient(to right, #4568DC 0%, #B06AB3  100%, #4568DC  100%);
     height: 5px;
     width: 100%;
   }
+
   .form-content {
+    font-weight: 500;
     background: #fbfbfb;
     border: none;
     outline: none;
     padding-top: 14px;
+    color: rgb(57, 55, 68);
+    padding-left: 0.7rem;
   }
   .underline-title {
-    background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+    /* background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
     height: 3px;
     margin: -0.25rem auto 0 auto;
     display: center;
     width: 150px;
-    /* padding: 2px; */
+    padding: 2px; */
+    width: 2.8125rem;
+    height: 0.375rem;
+    background: #3c009d;
+    border-radius: 0.5625rem;
+    display: center;
+    margin: -0.25rem auto 0 auto;
   }
-  
+  .form_row {
+    padding-top: 1.875rem;
+    font-size: 1.1875rem;
+    font-weight: 550;
+  }
