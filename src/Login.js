@@ -1,61 +1,57 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import axios from "axios";
 import "./Login.css";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router';
-import { useHistory } from 'react-router-dom';
-import Admin from './Admin';
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-} from "react-router-dom";
-
-
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const Login = () => {
     const navigate = useNavigate();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setRole] = useState('');
+   
 
-    const handleNameChange = (value) =>
-    {
-        setUsername(value);
-    }
-    const handlePasswordChange = (value) =>
-    {
-        setPassword(value);
-    }
-    
-    const setSelectedFruit = (value) =>
-    {
-        setRole(value);
+    const handleRole = (event) => {
+        setRole(event.target.value);
+    };
+    const handleusername = (event) => {
+        setUsername(event.target.value);
+    };
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        navigate("/Register");
     }
     const handleLogin = (e) => {
         //used to prevent reload of page on submit
         e.preventDefault();
 
         const data = {
-            UserName:username,
-            Password:password,
-            Role:role
+            UserName: username,
+            Password: password,
+            Role: role
         }
         console.log(data);
         const url = "https://localhost:44313/api/test/Login";
         axios.post(url, data).then((result) => {
             alert(result.data);
-            if (result.data === "Login Successful")
-            {
+            if (result.data === "Login Successful") {
                 alert(result.data);
-                if (role ==="Admin") {
+                if (role === "Admin") {
                     navigate("/Admin");
                 }
-                else if(role === "User")
-                {
+                else if (role === "User") {
                     navigate("/User");
                 }
             } else {
@@ -66,41 +62,53 @@ const Login = () => {
             alert(error);
             navigate("/");
         })
-    
+
     }
 
+    return (
+        <div className='container'>
+            <div className='header'>
+                <div className='text'>Login</div>
+                <div className='underline'></div>
+            </div>
+            <div className='inputs'>
+                <div className='input'>
+                    <div className='heading'>Username</div>
+                    <input className="textbox" type="email" placeholder='Username' onChange={handleusername}/>
+                </div>
 
-  return (
-      <Fragment classname='body_f'>
-          <div id="card" >
-            <div id="card-content">
-               <div id="card-title"><h2>LOGIN</h2>
-                   <div class="underline-title"></div>
-               </div>
-                  <form class="form" onSubmit={handleLogin}>
-                  <label  class="form_row">&nbsp;Select Role</label>
-                      <select class="form-content" required onChange={(e) => setSelectedFruit(e.target.value)}>
-                          <option>None</option>
-                          <option>Admin</option>
-                          <option>User</option>
-                      </select>
-               <div class="form-border"></div>
-               <label class="form_row">&nbsp;Username</label>
-               <input id="user-email" class="form-content"  required onChange={(e)=>handleNameChange(e.target.value)}/>
-               <div class="form-border"></div>
-               <label class="form_row">&nbsp;Password</label>
-               <input id="user-password" class="form-content" type="password" required onChange={(e)=>handlePasswordChange(e.target.value)}/>
-               <div class="form-border"></div>
-                      <button id="submit-btn">Submit</button> 
-                      {/* <input id="submit-btn" type="submit" name="submit" value="LOGIN" /> */}
-      </form>
-              </div>
-              
-  </div>
-         
-          
-    </Fragment>
-  )
+                <div className='input'>
+                    <div className='heading'>Password</div>
+                    <input className="textbox" type="password" placeholder='Password' onChange={handlePasswordChange}/>
+                </div>
+
+                <div className='input'>
+                    <div className='heading'>Select Role</div>
+                    <div className='drop-box-role'>
+                        <FormControl sx={{ m: 1, minWidth: 200 }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Role</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={role}
+                                label="Role"
+                                onChange={handleRole}
+                            >
+                                <MenuItem value={'Admin'}>Admin</MenuItem>
+                                <MenuItem value={'User'}>User</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                </div>
+
+                <div className='forgot-password'>New User? <span onClick={handleSignUp}>Click Here to Register!</span></div>
+                <div className='submit-container'>
+                    <div className='submit' onClick={handleSignUp}>Sign Up</div>
+                    <div className='submit' onClick={handleLogin}>Login</div>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default Login

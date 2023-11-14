@@ -1,3 +1,4 @@
+/*
 .container{
     display: flex;
     flex-direction: column;
@@ -6,7 +7,6 @@
     background: #fff;
     padding-bottom: 1.875rem;
     width: 600;
-    border-radius: 1.5625rem;
 }
 .header{
     display: flex;
@@ -48,25 +48,27 @@
 .textbox{
     margin-right: 1.25rem;
 }
-
+.drop-box-deparment{
+    margin-right: 1.25rem;
+}
+.drop-box-dob{
+    margin-right: 0.625rem;
+}
 .drop-box-role{
-    margin: auto;
-    margin-left: 0.375rem;
+    margin-right: 1.25rem;
 }
 .input input{
-    height: 2.5rem;
-    width: 18.75rem;
-    /* background: transparent; */
-    /* border: none; */
-    /* outline: none; */
+    height: 40px;
+    width: 300px;
     color: #797979;
-    font-size: 1.1875rem;
+    font-size: 19px;
 }
 .forgot-password{
-    margin-top: 1.6875rem;
+    margin-top: 27px;
     color: #797979;
-    font-size: 1.125rem;
-    text-align: center;
+    font-size: 18px;
+    text-align: right;
+    margin-right: 80px;
 }
 .forgot-password span{
     color: #4c00b4;
@@ -75,20 +77,22 @@
 
 .submit-container{
     display: flex;
-    gap: 1.875rem;
-    margin: 3.75rem auto;
+    gap: 30px;
+    margin: 60px auto;
 }
 .submit{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 13.75rem;
-    height: 3.6875rem;
+    width: 220px;
+    height: 59px;
     color: #fff;
     background-image : linear-gradient(to right, #4568DC 0%, #B06AB3  100%, #4568DC  100%);
-    border-radius: 3.125rem;
+    border-radius: 50px;
     text-transform: uppercase;
+    transition: 0.5s;
     cursor: pointer;
 }
+*/
 
 
