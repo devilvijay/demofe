@@ -57,25 +57,26 @@ const Register = () => {
         e.preventDefault();
 
         const data = {
+            FirstName:firstname,
+            LastName:lastname,
             UserName: username,
             Password: password,
-            Role: role
+            Role: role,
+            Department:department,
+            DateOfJoining:date,
+            Address:address,
+            Contact:Contact,
         }
         console.log(data);
-        const url = "https://localhost:44313/api/test/Login";
+        const url = "https://localhost:44372/api/Values";
         axios.post(url, data).then((result) => {
             alert(result.data);
-            if (result.data === "Login Successful") {
-                alert(result.data);
-                // if (role === "Admin") {
-                //     navigate("/Admin");
-                // }
-                // else if (role === "User") {
-                //     navigate("/User");
-                // }
+            if (result.data === "data has been inserted") {
+                console.log(result.data);
                 navigate("/");
             } else {
-                alert(result.data);
+                alert("Registration failed")
+                console.log(result.data);
                 navigate("/");
             }
         }).catch((error) => {

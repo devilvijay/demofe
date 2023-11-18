@@ -43,7 +43,7 @@ const Login = () => {
             Role: role
         }
         console.log(data);
-        const url = "https://localhost:44313/api/test/Login";
+        const url = "https://localhost:44372/Login";
         axios.post(url, data).then((result) => {
             alert(result.data);
             if (result.data === "Login Successful") {
